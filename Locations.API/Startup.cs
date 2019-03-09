@@ -195,6 +195,7 @@ namespace Microsoft.eShopOnContainers.Services.Locations.API
 
         private void RegisterAppInsights(IServiceCollection services)
         {
+            services.AddSingleton<ITelemetryInitializer>(new CloudRoleNameInitializer("locations"));
             services.AddApplicationInsightsTelemetry(Configuration);
             var orchestratorType = Configuration.GetValue<string>("OrchestratorType");
 
